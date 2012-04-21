@@ -5,7 +5,7 @@ Donate Link: http://www.cybersprocket.com/products/moneypress-abundatrade-editio
 Tags: plugin,post,page,abundatrade,affiliate,books,cds,dvds,used,cash
 Requires at least: 3.0
 Tested up to: 3.2.1
-Stable tag: 0.1
+Stable tag: 0.2
 
 Earn extra income for your site via the Abundatrade affiliate program.  The shortcode puts the calculator on your website that shows visitors how much cash they will get for their used CDs, DVDs, and books.
 
@@ -32,6 +32,20 @@ credentials.
 
 Learn more at: http://www.cybersprocket.com/
 
+== Features ==
+
+= Custom Styling =
+
+Users that want to customize the look and feel of the search form, map, and search results can do so
+with ease using the new Theme System that is part of the Pro Pack.   Copy an existing CSS file,
+change the file name and update the CSS header, upload to the server and you can now activate your
+new theme or any of the built-in defaults by selecting it from the auto-generated pulldown menu.
+
+Be sure to send us your custom theme CSS file and we'll include it in the next release!   We'll also list you here in our upcoming credits section!
+
+Users that opt not to purchase the Pro Pack can still customize the look by editing the basic CSS file that ships with the free plugin.
+
+
 = Related Links =
 
 * [MoneyPress : Abundatrade Edition](http://www.cybersprocket.com/products/moneypress-abundatrade-edition/) 
@@ -44,9 +58,14 @@ Learn more at: http://www.cybersprocket.com/
 
 PHP 5.2 or later.
 
-= Main Plugin =
+= Automated Installation =
 
- * Install the plugin using the Zip file.
+ * The fastest way to install is to use the WordPress admin panel, search for Abundatrade, and install the plugin from there.
+ 
+= Manual Installation = 
+
+ * Download the zip file.
+ * Go to your WordPress admin panel and select add new plugin, upload, locate your zip file.
  * Browse to ‘MoneyPress : Abundatrade Edition’ in your admin settings menu.
  * Enter your Abundtrade affiliate ID.
  * Enter the ‘[mp-abunda-calc]’ on any page you want to show the calculator on.
@@ -85,7 +104,14 @@ Learn more at [our job listing page](http://www.cybersprocket.com/about/our_team
 
 == Changelog ==
 
-= v0.1 (January 2012) =
+= v0.2 (April 21st 2012) =
+
+* Fix for consolidation when submitting same UPC more than once.
+* Clean up all the themes.
+* Get the please wait message box back online.
+* Fix the delete this item link.
+
+= v0.1 (April 9th 2012) =
 
 * Initial Release
 * jQuery force to 1.7.1 on pages with shortcode (0.1.02)

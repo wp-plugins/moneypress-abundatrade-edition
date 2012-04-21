@@ -234,6 +234,7 @@ class wpCSL_license__mpabunda {
 class wpCSL_license_package__mpabunda {
 
     public $active_version = 0;
+    public $force_enabled = false;
     
     /**------------------------------------
      **/
@@ -251,7 +252,7 @@ class wpCSL_license_package__mpabunda {
         // set this package to the pre-saved enabled/disabled setting from wp_options
         // which will return false if never set before
         //
-        $this->isenabled = get_option($this->enabled_option_name);        
+        $this->isenabled = ($this->force_enabled || get_option($this->enabled_option_name));        
         
         // Set our license key property
         //
@@ -259,7 +260,7 @@ class wpCSL_license_package__mpabunda {
         
         // Set our active version (what we are licensed for)
         //
-        $this->active_version =  get_option($this->prefix.'-'.$this->sku.'-latest-version-numeric'); 
+        $this->active_version =  (isset($this->force_version)?$this->force_version:get_option($this->prefix.'-'.$this->sku.'-latest-version-numeric')); 
     }
     
     

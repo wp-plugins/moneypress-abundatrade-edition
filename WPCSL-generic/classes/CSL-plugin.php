@@ -8,7 +8,7 @@
 * share a code libary and reduce code redundancy.
 * 
 ************************************************************************/
-define('WPCSL__mpabunda__VERSION', '1.6');
+define('WPCSL__mpabunda__VERSION', '1.8');
 
 // (LC) 
 // These helper files should only be loaded if needed by the plugin

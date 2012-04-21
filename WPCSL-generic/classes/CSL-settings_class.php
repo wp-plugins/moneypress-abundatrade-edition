@@ -421,13 +421,14 @@ class wpCSL_settings__mpabunda {
         if (isset($this->parent->license->packages) && ($this->parent->license->packages > 0)) {
             $content .='<tr><td colspan="2" class="optionpack_topline">'.
             __('The following optional add-ons are available',WPCSL__mpabunda__VERSION).':</td></tr>';
-            $content .= '<tr valign="top">';
+            $content .= '<tr valign="top"><td class="optionpack" colspan="2">';
             foreach ($this->parent->license->packages as $package) {
-                $content .= '<th class="input_label optionpack">'.$package->name.'</th>';
-                $content .= '<td class="optionpack">'.$this->EnabledOrBuymeString($license_ok,$package).'</td>';
+                $content .= '<div class="optionpack_box" id="pack_'.$package->sku.'">';
+                $content .= '<div class="optionpack_name">'.$package->name.'</div>';
+                $content .= '<div class="optionpack_info">'.$this->EnabledOrBuymeString($license_ok,$package).'</div>';
+                $content .= '</div>';
             }
-
-            $content .= '</tr>';
+            $content .= '</td></tr>';
         }
         
         // If the main product or packages show the license box
@@ -460,14 +461,21 @@ class wpCSL_settings__mpabunda {
             // Check if package is licensed now.
             //
 
-            $package->isenabled =
-                $package->parent->check_license_key(
-                    $package->sku,
-                    true,
-                    ($this->has_packages ? $package->license_key : '')
+            $package->isenabled = (
+                
+                    $package->force_enabled ||
+                    
+                    $package->parent->check_license_key(
+                        $package->sku,
+                        true,
+                        ($this->has_packages ? $package->license_key : '')
+                    )
                 );
 
-            $installed_version = get_option($this->prefix.'-'.$package->sku.'-version');
+            $installed_version = (isset($package->force_version)?
+                        $package->force_version :
+                        get_option($this->prefix.'-'.$package->sku.'-version')
+                        );
             $latest_version = get_option($this->prefix.'-'.$package->sku.'-latest-version');
 
             // Upgrade is available if the current package version < the latest available

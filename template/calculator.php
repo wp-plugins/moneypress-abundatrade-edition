@@ -1,12 +1,12 @@
-<div id="abunda_please_wait">
-   <div id="abunda_please_wait_msg">Please Wait</div>
-   <div id="abunda_please_wait_grx"></div>
-</div>
 <div id="abundatrade_content_layout">
     <div id="top_content">
+        <div id="abunda_please_wait">
+           <div id="abunda_please_wait_msg">Getting real-time pricing, please wait...</div>
+           <div id="abunda_please_wait_grx"></div>
+        </div>        
     
         <!--top_input_section-->    
-        <div id="top_input_section" class="calc_content_wrap">        
+        <div id="top_input_section" class="calc_content_wrap">
           <form id="abundaInput" class="abundaInput" method="post">
             <input id="a" name="a" type="hidden" value="<?php echo get_option(MP_ABUNDA_PREFIX.'-affid'); ?>" />
             <input id="item_num" value="1" name="item_num" type="hidden"/>

@@ -98,7 +98,7 @@ function display_totals(data) {
     jQuery('#total_item_count').html(data.total_qty);
     jQuery('#grand_total').html(data.currency_for_total + data.total);
     jQuery('#total_prevaluation').html(data.currency_for_total + data.total);
-
+    
     // Turn off the UI Lock
     //    
     please_wait(false);
@@ -113,25 +113,30 @@ function display_totals(data) {
        jQuery('#submitList').attr('style','cursor:default');
     }
     
-    /* Delete This Row.click()
-     * 
-     * The hook needs to go here.
-     *
-     * The reason is that new rows (and thus delete "classed" links)
-     * are returned from load_previous_session or individual item lookups
-     * so we need to "re-hook" this each time.
-     *
-     * display_totals is conveniently called after and records are added
-     * or removed from the table... two birds, one stone.
-     *
-     * uses Ajax to talk to Abundatrade server.
-     * and send the delete this action.
-     */    
-    jQuery('.delete_this_row:not(.disabled)').click(function(event) {
-       delete_this_row(event.target);
-    });      
+    // Set the delete button
+    //
+    jQuery('.delete_this_row').attr('onclick','delete_the_row(this); return false;');    
 }
 
+
+/*
+ * function: load_previous_session()
+ *
+ * Delete a selected row.
+ *
+ */
+function delete_the_row(obj) {
+    var product_code = jQuery(obj).parents('tr').children('.upc').text();
+    var request = jQuery.ajax(            
+        {
+            type: 'GET',
+            url: 'http://'+abundacalc.server+'/trade/process/deleteItem.php',
+            data: 'product='+product_code,
+            dataType: 'jsonp'
+    });
+    
+    jQuery(obj).parents('tr').remove();
+}
 
 /*
  * function: load_previous_session()
@@ -180,12 +185,15 @@ function lookup_item(obj) {
             });
             
             request.done(function(data){
+                    var selector ='td:contains("'+data.product_code+'")'; 
+                    jQuery(selector).parents('tr').remove();
                     jQuery('#abundaCalcTbl > tbody').prepend(data.row_html);
                     display_totals(data);
                 });
             
             request.fail(function(jqXHR, textStatus, errorThrown) {
                     alert( "Request failed: " + textStatus + " - " + errorThrown );
+                    please_wait(false);
                 });
             
         // Warn if not at least 3 digits
@@ -193,7 +201,8 @@ function lookup_item(obj) {
         } else {
             jQuery.prompt('The product code must be at least 6 characters long.<br/>Enter a UPC or Amazon ASIN.');
         }            
-    }        
+    } 
+    return false;
 } 
 
 
@@ -208,7 +217,7 @@ function lookup_item(obj) {
      // Wait Mode
      //
      if (UILocked) {
-         jQuery('#please_wait').show();
+         jQuery('#abunda_please_wait').show();
          jQuery('#lookupItem').addClass('disabled');
          jQuery('#submitList').addClass('disabled');
          jQuery('#delete_all_top').addClass('disabled');
@@ -219,7 +228,7 @@ function lookup_item(obj) {
      // Go,Go,Go...
      //
      } else {
-         jQuery('#please_wait').hide();
+         jQuery('#abunda_please_wait').hide();
          jQuery('#lookupItem').removeClass('disabled');         
          jQuery('#submitList').removeClass('disabled');
          jQuery('#delete_all_top').removeClass('disabled');
@@ -326,7 +335,7 @@ jQuery(document).ready(function(){
      * must use JSONP to allow for cross-site calls and processing
      * of return data without error.
      */
-     jQuery('#lookupItem').on('click',function() {lookup_item(this);});
+     jQuery('#lookupItem').on('click',function() {lookup_item(this); return false;});
     
     /* Submit List.click()
      * 
@@ -335,6 +344,7 @@ jQuery(document).ready(function(){
      * of return data without error.
      */
     jQuery('#submitList').on('click',function() {submit_the_list(this);});    
+    
     
     /* Delete All.click()
      * 

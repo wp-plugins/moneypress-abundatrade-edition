@@ -18,6 +18,7 @@
      global $post;
     $pattern = get_shortcode_regex();
     
+    if (!isset($post)) { return; }
     
     // If the mp_abunda shortcode is on this post
     //

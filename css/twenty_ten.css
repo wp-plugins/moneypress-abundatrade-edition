@@ -94,44 +94,53 @@
     color: #888;
 }
 
- /*----------------------------------
- * The wait timer div. 
+  
+/*---------------------------
+ * Abundatrade Trade Calculator Content
  */
- div#please_wait {
-    display:none;
-     
+
+ 
+
+div#abundatrade_content_layout {
+    font-family: "Helvetica Neue",Arial,Helvetica,"Nimbus Sans L",sans-serif;
+    margin: 0 auto;
+    width: 680px;  
+}
+
+/* Above The Data Rows */
+ div#top_content {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 80px;
+ }
+ 
+/* Please Wait Spinner */
+div#abunda_please_wait {
+    display: none;
+    
     background-color: #F4F488;
     border: 1px solid #444444;
     border-radius: 10px 10px 10px 10px;
     font-family: Verdana,Geneva,Arial,Helvetica,sans-serif;
     font-size: 12px;
     font-weight: bold;
-    margin: 3px;
-    min-height: 74px;
-    padding-top: 10px;
-    position: absolute;
     text-align: center;
-    width: 634px;
- }
- div#please_wait_grx {
+    z-index: 99;
+    
+    position: absolute;
+    margin: 0px auto;
+    padding-top: 10px;
+    width: 100%;
+    height: 100%;
+}
+div#abunda_please_wait_grx {
     background: url("../images/loader.gif") repeat scroll 0 0 transparent;
     height: 32px;
     margin: auto;
     width: 32px;
- }
- 
-
- 
-/*---------------------------
- * Abundatrade Trade Calculator Content
- */
-
- 
- 
-/* Above The Data Rows */
-div#abundatrade_content_layout {
-  font-family: "Helvetica Neue",Arial,Helvetica,"Nimbus Sans L",sans-serif;    
 }
+ 
 
 /* The top search form items */
 div#abundatrade_content_layout div#top_input_section {
@@ -263,7 +272,7 @@ table#abundaCalcTbl .upc {
     text-align:left;
 }
 table#abundaCalcTbl .details {
-    width:147px;
+    width: 187px;
 }
 table#abundaCalcTbl .quantity {
     width: 35px;
@@ -326,7 +335,7 @@ div#abundatrade_content_layout tfoot th.offer
 }
 div#abundatrade_content_layout tfoot th.action
 {
-    width: 147px;
+    width: 187px;
 }
 div#abundatrade_content_layout tfoot th.action div.centerme {
     margin-left: 45px;
