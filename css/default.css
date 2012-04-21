@@ -1,0 +1,513 @@
+/** 
+ ** file: default.css
+ ** label: Default Theme
+ ** description: A default look for the Abundatrade listings.
+ **
+ **/
+  
+ .clear {
+     clear: both;
+ }
+ 
+ .float_right {
+     float: right;
+ }
+ 
+ .subtext {
+     font-size: 11px;
+     text-align: right;
+ }
+
+ /*----------------------------------
+ * A div that looks like a button. 
+ */
+.like-a-button {
+	background: #FFF; /* for non-css3 browsers */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#DDDDDD'); /* for IE */
+    background: -webkit-gradient(linear, left top, left bottom, from(#FFF), to(#DDD)); /* for webkit browsers */
+    background: -moz-linear-gradient(top,  #FFF,  #DDD); /* for firefox 3.6+ */  
+  
+  border: 1px solid #BBBBBB;
+  border-radius: 3px 3px 3px 3px;
+  
+  text-align: center;
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
+  
+  width: 100px;
+  line-height: 2em;
+  
+  font-size: 14px;
+  font-weight: normal;
+  color: #5F5E5E;
+  
+  
+  /* Corners */
+  -webkit-border-radius:6px;
+  -moz-border-radius:6px;
+  border-radius:6px;
+   -khtml-border-radius: 6px;
+   
+   /* Shadow */
+   -moz-box-shadow: 0px 1px 3px #AAA;
+   -webkit-box-shadow: 0px 1px 3px #AAA;
+   box-shadow: 0px 1px 3px #AAA;   
+}
+.like-a-button:hover {
+	background: #DDD; /* for non-css3 browsers */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#DDDDDD', endColorstr='#FFFFFF'); /* for IE */
+    background: -webkit-gradient(linear, left top, left bottom, from(#DDD), to(#FFF)); /* for webkit browsers */
+    background: -moz-linear-gradient(top,  #DDD,  #FFF); /* for firefox 3.6+ */  
+}
+.like-a-button A {
+    text-decoration:none;
+    color: #333;
+}
+.like-a-button A:link {
+    text-decoration:none;
+    color: #333;
+}
+
+.like-a-button.disabled {
+    background: -moz-linear-gradient(center top , #DDDDDD, #DDDDDD);
+    box-shadow: none;
+    cursor: wait;
+}
+.like-a-button.disabled:hover {
+	background: #DDD; /* for non-css3 browsers */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#DDDDDD', endColorstr='#DDDDDD'); /* for IE */
+    background: -webkit-gradient(linear, left top, left bottom, from(#DDD), to(#DDD)); /* for webkit browsers */
+    background: -moz-linear-gradient(top,  #DDD,  #DDD); /* for firefox 3.6+ */
+    color: #888;
+    box-shadow: none;
+    cursor: wait;
+}
+.like-a-button.disabled A,
+.like-a-button.disabled A:active,
+.like-a-button.disabled A:hover,
+.like-a-button.disabled A:link,
+.like-a-button.disabled A:visited
+{
+    text-decoration:none;
+    color: #888;
+}
+
+  
+/*---------------------------
+ * Abundatrade Trade Calculator Content
+ */
+
+ 
+
+div#abundatrade_content_layout {
+    font-family: "Helvetica Neue",Arial,Helvetica,"Nimbus Sans L",sans-serif;
+    margin: 0 auto;
+    width: 680px;  
+}
+
+/* Above The Data Rows */
+ div#top_content {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 80px;
+ }
+ 
+/* Please Wait Spinner */
+div#abunda_please_wait {
+    display: none;
+    
+    background-color: #eecbad;
+    border: 1px solid #444444;
+    border-radius: 10px 10px 10px 10px;
+    font-family: Verdana,Geneva,Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    z-index: 99;
+    
+    position: absolute;
+    margin: 0px auto;
+    padding-top: 10px;
+    width: 100%;
+    height: 100%;
+}
+div#abunda_please_wait_grx {
+    background: url("../images/loader.gif") repeat scroll 0 0 transparent;
+    height: 32px;
+    margin: auto;
+    width: 32px;
+}
+ 
+
+/* The top search form items */
+div#abundatrade_content_layout div#top_input_section {
+    background: none repeat scroll 0 0 #FDF5E6;
+    border: 1px solid #888888;
+    height: 35px;
+    margin: 0;
+    padding: 3px 0;
+    width: 100%;
+}
+
+div#abundatrade_content_layout .input_container {
+    float: left;
+    margin: 3px 12px;
+}
+div#abundatrade_content_layout .input_container_right {
+    float: right;
+    margin: 3px 12px;
+}
+
+
+div#abundatrade_content_layout .label {
+  float: left;
+  text-align: right;
+  padding-right:3px;
+  color: #888888;
+  font-size: 18px;
+}
+
+div#abundatrade_content_layout .input {
+    float: left;
+    height:12px;
+}
+
+div#abundatrade_content_layout .submit {
+    background: none repeat scroll 0 0 #E0FFE0;
+    border: 1px solid blue;
+    font-size: 14px;
+    height: 25px;
+    margin: 0;
+    padding: 0 2px 4px;   
+}
+
+div#abundatrade_content_layout #product_qty {
+    width: 25px;
+}
+
+
+div#abundatrade_content_layout #product_code {
+    width: 125px;
+}
+
+/* Second Row Input Section */
+div#abundatrade_content_layout div#second_input_section {
+    background: none repeat scroll 0 0 #FDF5E6;
+    border: 1px solid #888888;
+    height: 35px;
+    margin: 6px 0px;
+    padding: 3px 0;
+    width: 100%;
+}
+div#abundatrade_content_layout .input_text {
+    color: #111199;
+    float: left;
+    font-size: 18px;
+    font-weight: normal;
+    height: 12px;
+    line-height: 1.4em;
+}
+
+/* Calculator Body */
+div#abundatrade_content_layout table {
+    background: #F8F8F8;
+    margin: 0px;
+}
+
+/* Calculator Header/Footer */
+div#abundatrade_content_layout tfoot th,
+div#abundatrade_content_layout thead th
+{
+    background: none repeat scroll 0 0 #eecbad;
+    color: #444444;
+    font-size: 14px;
+    font-weight: bold;
+    height: 12px;
+    line-height: 1.4em;
+    margin: 3px 0;
+    padding: 3px;    
+}
+
+div#abundatrade_content_layout thead 
+{
+    border: 1px solid black;
+    display: block;
+    line-height: 2em;
+    margin-bottom: 3px;
+    width: 100%;
+}
+
+div#abundatrade_content_layout tfoot 
+{
+    border: 1px solid black;
+    display: block;
+    line-height: 2em;
+    margin-top: 3px;
+    width: 100%;
+}
+
+
+/* Returned Data Output */
+table#abundaCalcTbl tbody#abundaCalcBody_request tr.new {
+    display:block;
+}
+
+table#abundaCalcTbl tbody#abundaCalcBody_request tr td {
+    margin: 3px 0px;
+    padding:3px;
+    font-size: 12px;
+    vertical-align: top;
+    position:relative;
+}
+
+table#abundaCalcTbl tbody#abundaCalcBody_request tr:hover {
+    background: #F3F2F1;
+}
+
+
+table#abundaCalcTbl .line_number {
+    width:10px;
+}
+table#abundaCalcTbl .upc {
+    width:92px;
+    text-align:left;
+}
+table#abundaCalcTbl .details {
+    width: 187px;
+}
+table#abundaCalcTbl .quantity {
+    width: 35px;
+    text-align: center;
+}
+table#abundaCalcTbl .item {
+    width:110px;
+    text-align: right;
+}
+table#abundaCalcTbl .values {
+    width:100px;
+    text-align: right;
+    font-weight:bold;
+}
+table#abundaCalcTbl .delete {
+    width:102px;
+    text-align: center;
+}
+
+table#abundaCalcTbl p.blatant {
+    color: #880000;
+    font-weight: bold;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+table#abundaCalcTbl div.td_image {    
+    top: 0;
+    left: 0;
+}
+table#abundaCalcTbl div.td_details {
+}
+
+.delete_this_row{
+    text-decoration: none;
+    color: #FF4444;
+}
+.delete_this_row.disabled{
+    text-decoration: none;
+    color: #FF4444;
+    cursor: wait;
+}
+
+
+div#abundatrade_content_layout tfoot th.item_count_label
+{
+    width: 102px;
+}
+div#abundatrade_content_layout tfoot th.item_count
+{
+    width: 158px;
+}
+div#abundatrade_content_layout tfoot th.offer_label
+{
+    width: 97px;
+}
+div#abundatrade_content_layout tfoot th.offer
+{
+    width: 104px;
+}
+div#abundatrade_content_layout tfoot th.action
+{
+    width: 187px;
+}
+div#abundatrade_content_layout tfoot th.action div.centerme {
+    margin-left: 45px;
+    display:block;
+    width: 100px;
+}
+
+/* Popup Submit Form */
+p.submitform label {
+    width: 80px;
+    float: left;
+    text-align: right;
+}
+
+
+*------------------------------
+	Impromptu
+------------------------------*/
+.jqifade{
+	position: absolute; 
+	background-color: #aaaaaa; 
+}
+div.jqi{ 
+	width: 400px; 
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; 
+	position: absolute; 
+	background-color: #F4F4F4; 
+	font-size: 11px; 
+	text-align: left; 
+	border: solid 1px #444444;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	padding: 7px;
+}
+div.jqi .jqicontainer{ 
+	font-weight: bold; 
+}
+div.jqi .jqiclose{ 
+	position: absolute;
+	top: 4px; right: -2px; 
+	width: 18px; 
+	cursor: default; 
+	color: #bbbbbb; 
+	font-weight: bold; 
+}
+div.jqi .jqimessage{ 
+	padding: 10px; 
+	line-height: 20px; 
+	color: #444444; 
+}
+div.jqi .jqibuttons{ 
+	text-align: right; 
+	padding: 5px 0 5px 0; 
+	border: solid 1px #DDDDDD; 
+	background-color: #FAFAFA;
+}
+div.jqi button{ 
+	padding: 3px 10px; 
+	margin: 0 10px; 
+	background-color: #2F6073; 
+	border: solid 1px #f4f4f4; 
+	color: #ffffff; 
+	font-weight: bold; 
+	font-size: 12px; 
+}
+div.jqi button:hover{ 
+	background-color: #728A8C;
+}
+div.jqi button.jqidefaultbutton{ 
+	/*background-color: #8DC05B;*/
+	background-color: #BF5E26;
+}
+.jqiwarning .jqi .jqibuttons{ 
+	background-color: #BF5E26;
+}
+
+/*
+------------------------------
+	impromptu
+------------------------------
+*/
+.impromptuwarning .impromptu{ background-color: #aaaaaa; }
+.impromptufade{
+	position: absolute;
+	background-color: #ffffff;
+}
+div.impromptu{
+    position: absolute;
+	background-color: #cccccc;
+	padding: 10px; 
+	width: 300px;
+	text-align: left;
+}
+div.impromptu .impromptuclose{
+    float: right;
+    margin: -35px -10px 0 0;
+    cursor: pointer;
+    color: #213e80;
+}
+div.impromptu .impromptucontainer{
+	background-color: #213e80;
+	padding: 5px; 
+	color: #ffffff;
+	font-weight: bold;
+}
+div.impromptu .impromptumessage{
+	background-color: #415ea0;
+	padding: 10px;
+}
+div.impromptu .impromptubuttons{
+	text-align: center;
+	padding: 5px 0 0 0;
+}
+div.impromptu button{
+	padding: 3px 10px 3px 10px;
+	margin: 0 10px;
+}
+
+/*
+------------------------------
+	columns ex
+------------------------------
+*/
+.colsJqifadewarning .colsJqi{ background-color: #b0be96; }
+.colsJqifade{
+	position: absolute;
+	background-color: #ffffff;
+}
+div.colsJqi{
+    position: absolute;
+	background-color: #d0dEb6;
+	padding: 10px; 
+	width: 400px;
+	text-align: left;
+}
+div.colsJqi .colsJqiclose{
+    float: right;
+    margin: -35px -10px 0 0;
+    cursor: pointer;
+    color: #bbbbbb;
+}
+div.colsJqi .colsJqicontainer{
+	background-color: #e0eEc6;
+	padding: 5px; 
+	color: #ffffff;
+	font-weight: bold;
+	height: 160px;
+}
+div.colsJqi .colsJqimessage{
+	background-color: #c0cEa6;
+	padding: 10px;
+	width: 280px;
+	height: 140px;
+	float: left;
+}
+div.colsJqi .jqibuttons{
+	text-align: center;
+	padding: 5px 0 0 0;
+}
+div.colsJqi button{
+	background: url(../images/button_bg.jpg) top left repeat-x #ffffff;
+	border: solid #777777 1px;
+	font-size: 12px;
+	padding: 3px 10px 3px 10px;
+	margin: 5px 5px 5px 10px;
+	width: 75px;
+}
+div.colsJqi button:hover{
+	border: solid #aaaaaa 1px;
+}
+
