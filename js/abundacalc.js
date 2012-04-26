@@ -115,7 +115,9 @@ function display_totals(data) {
     
     // Set the delete button
     //
-    jQuery('.delete_this_row').attr('onclick','delete_the_row(this); return false;');    
+    jQuery('.delete_this_row').attr('onclick','delete_the_row(this); return false;');
+
+    jQuery('#product_code').focus();    
 }
 
 
@@ -328,6 +330,12 @@ jQuery(document).ready(function(){
      */
     load_previous_session();
     
+    /* Form Submit
+     *
+     * Capture the form submit, and just use it to lookup items.
+     *
+     */
+     jQuery('#abundaInput').submit(function() {lookup_item(jQuery('#lookupItem').text()); return false;});
         
     /* Lookup Item.click()
      * 

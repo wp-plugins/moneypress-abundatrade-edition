@@ -3,9 +3,9 @@ Plugin Name: MoneyPress : Abundatrade Edition
 Contributors: cybersprocket
 Donate Link: http://www.cybersprocket.com/products/moneypress-abundatrade-edition/
 Tags: plugin,post,page,abundatrade,affiliate,books,cds,dvds,used,cash
-Requires at least: 3.0
-Tested up to: 3.2.1
-Stable tag: 0.2
+Requires at least: 3.3
+Tested up to: 3.3.2
+Stable tag: 0.3
 
 Earn extra income for your site via the Abundatrade affiliate program.  The shortcode puts the calculator on your website that shows visitors how much cash they will get for their used CDs, DVDs, and books.
 
@@ -103,6 +103,13 @@ Learn more at [our job listing page](http://www.cybersprocket.com/about/our_team
 
 
 == Changelog ==
+
+= v0.3 (April 26th 2012) =
+
+* Add devster theme.
+* Only render css on pages with shortcode.
+* Force cursor into UPC entry box for improved scanner cooperation.
+* Fix "enter" in UPC field, lookup instead of refresh page.
 
 = v0.2 (April 21st 2012) =
 

@@ -90,6 +90,7 @@ class wpCSL_plugin__mpabunda {
         $this->display_settings_collapsed = true;
         $this->show_locale      = true;
         $this->broadcast_url    = 'http://www.cybersprocket.com/signage/index.php';
+        $this->shortcode_was_rendered = false;
 
         // Do the setting override or initial settings.
         //
@@ -182,7 +183,8 @@ class wpCSL_plugin__mpabunda {
             'prefix'        => $this->prefix,
             'plugin_path'   => $this->plugin_path,
             'plugin_url'    => $this->plugin_url,  
-            'support_url'   => $this->support_url
+            'support_url'   => $this->support_url,
+            'parent'        => $this
         );
 
         $this->initialize();
@@ -843,6 +845,8 @@ class wpCSL_plugin__mpabunda {
      */
     function shortcode_show_items($atts, $content = NULL) {
         if ( $this->ok_to_show() ) {
+            $this->shortcode_was_rendered = true;
+            
             $content = '';
 
             // Debugging
@@ -990,12 +994,21 @@ class wpCSL_plugin__mpabunda {
      **/
     function user_header_css() {
 
-        if (isset($this->css_url)) {
-            wp_register_style($this->prefix.'css', $this->css_url);
+        $cssPath = '';
+        if (isset($this->css_url)) {            
+            $cssPath = $this->css_url;
         } else if (isset($this->plugin_url)) {
-            wp_register_style($this->prefix.'css', $this->plugin_url . '/css/'.$this->prefix.'.css');
+            if ( file_exists($this->plugin_path.'/css/'.$this->prefix.'.css') ) {
+                $cssPath = $this->plugin_url . '/css/'.$this->prefix.'.css';
+            }
         }
-        wp_enqueue_style($this->prefix.'css');
+        
+        if ($cssPath != '') {
+            wp_enqueue_style(
+                    $this->prefix.'css',
+                    $cssPath
+                    );
+        }            
         wp_enqueue_style('thickbox');
     }
 

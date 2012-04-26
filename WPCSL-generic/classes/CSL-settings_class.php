@@ -5,7 +5,16 @@
  ** class: wpCSL_settings__mpabunda
  **
  ** The main settings class.
- ** 
+ **
+ ** see: http://redmine.cybersprocket.com/projects/wpmod/wiki/Class_wpCSL_settings
+ **
+ ** Methods:
+ **
+ **     __construct         : Overload of the default class instantiation.
+ **     add_section 
+ **     default_broadcast
+ **     get_broadcast   
+ **     get_item            : Return the value of a WordPress option that was saved via the settings interface.
  **/
 class wpCSL_settings__mpabunda {
 
@@ -177,7 +186,7 @@ class wpCSL_settings__mpabunda {
      }
      
     /**------------------------------------
-     ** method: get_broadcast
+     ** method: default_broadcast
      **
      **/
      function default_broadcast() {
@@ -231,6 +240,7 @@ class wpCSL_settings__mpabunda {
     /**------------------------------------
      ** method: get_item
      **
+     ** Return the value of a WordPress option that was saved via the settings interface.
      **/
     function get_item($name) {
         $option_name = $this->prefix . '-' . $name;
@@ -263,7 +273,20 @@ class wpCSL_settings__mpabunda {
             ) {
 
         $name = $this->prefix .'-'.$name;
-    
+
+        //** Need to check the section exists first. **/
+        if (!isset($this->sections[$section])) {
+            if (isset($this->notifications)) {
+                $this->notifications->add_notice(
+                    3,
+                    sprintf(
+                       __('Program Error: section <em>%s</em> not defined.',WPCSL__mpabunda__VERSION),
+                       $section
+                       )
+                );
+            }            
+            return;
+        }
         $this->sections[$section]->add_item(
             array(
                 'prefix' => $this->prefix,
@@ -604,7 +627,7 @@ class wpCSL_settings__mpabunda {
      **/
     function header() {
         echo "<div class='wrap'>\n";
-        screen_icon(preg_replace('/\s/','_',$this->name));
+        screen_icon(preg_replace('/\W/','_',$this->name));
         echo "<h2>{$this->name}</h2>\n";
         echo "<form method='post' action='".$this->form_action."'>\n";
         echo settings_fields($this->prefix.'-settings');
@@ -696,10 +719,11 @@ class wpCSL_settings_section__mpabunda {
     /**------------------------------------
      **/
     function __construct($params) {
+        $this->headerbar = true;        
         foreach ($params as $name => $value) {
             $this->$name = $value;
         }
-
+        
         if (!isset($this->auto)) $this->auto = true;
     }
 
@@ -745,13 +769,17 @@ class wpCSL_settings_section__mpabunda {
     /**------------------------------------
      **/
     function header() {
-        echo "<div class=\"postbox\" " . (isset($this->div_id) ?  "id='$this->div_id'" : '') . ">
-         <div class=\"handlediv\" title=\"Click to toggle\"><br/></div>
-         <h3 class=\"hndle\">
-           <span>{$this->name}</span>
-           <a name=\"".strtolower(strtr($this->name, ' ', '_'))."\"></a>
-         </h3>
-         <div class=\"inside\" " . (isset($this->start_collapsed) && $this->start_collapsed ? 'style="display:none;"' : '') . ">
+        echo "<div class=\"postbox\" " . (isset($this->div_id) ?  "id='$this->div_id'" : '') . ">";
+        
+        if ($this->headerbar) {
+            echo "<div class=\"handlediv\" title=\"Click to toggle\"><br/></div>
+             <h3 class=\"hndle\">
+               <span>{$this->name}</span>
+               <a name=\"".strtolower(strtr($this->name, ' ', '_'))."\"></a>
+             </h3>";
+        }             
+         
+         echo"<div class=\"inside\" " . (isset($this->start_collapsed) && $this->start_collapsed ? 'style="display:none;"' : '') . ">
             <div class='section_description'>{$this->description}</div>
     <table class=\"form-table\" style=\"margin-top: 0pt;\">\n";
 

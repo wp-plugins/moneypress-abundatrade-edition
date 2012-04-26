@@ -165,16 +165,20 @@ class wpCSL_themes__mpabunda {
      ** function: assign_user_stylesheet
      **
      ** Set the user stylesheet to what we selected.
+     **
+     ** For this to work with shortcode testing you MUST call it
+     ** via the WordPress wp_footer action hook.
+     **
      **/
     function assign_user_stylesheet() {
-        $themeFile = get_option($this->prefix.'-theme') . '.css';
-        if ($themeFile == '.css') { $themeFile='mp-white-1up.css'; }
-        
+        $themeFile = get_option($this->prefix.'-theme','mp-white-1up') . '.css';
         if ( file_exists($this->css_dir.$themeFile)) {
             wp_deregister_style($this->prefix.'_user_header_css');             
-            wp_dequeue_style($this->prefix.'_user_header_css');             
-            wp_register_style($this->prefix.'_user_header_css', $this->css_url .$themeFile); 
-            wp_enqueue_style ($this->prefix.'_user_header_css');
+            wp_dequeue_style($this->prefix.'_user_header_css');                
+            if ($this->parent->shortcode_was_rendered) {            
+                wp_enqueue_style($this->prefix.'_user_header_css', $this->css_url .$themeFile);
+            }
+            
             $this->configure_theme($themeFile);
         }      
     }     
