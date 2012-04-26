@@ -1,0 +1,268 @@
+/** 
+ ** file: abundadvds.css
+ ** label: AbundaDVDs
+ ** description: A theme for the AbundaDVDs site.
+ **
+ **/
+ 
+ .clear {
+     clear: both;
+ }
+ 
+ .float_right {
+     float: right;
+ }
+ 
+ .subtext {
+     font-size: 11px;
+     text-align: right;
+ }
+
+ /*----------------------------------
+ * A div that looks like a button. 
+ */
+.like-a-button {
+	background: #FFF; /* for non-css3 browsers */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#DDDDDD'); /* for IE */
+    background: -webkit-gradient(linear, left top, left bottom, from(#FFF), to(#DDD)); /* for webkit browsers */
+    background: -moz-linear-gradient(top,  #FFF,  #DDD); /* for firefox 3.6+ */  
+  
+  border: 1px solid #BBBBBB;
+  border-radius: 3px 3px 3px 3px;
+  
+  text-align: center;
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
+  
+  width: 100px;
+  line-height: 2em;
+  
+  font-size: 14px;
+  font-weight: normal;
+  color: #5F5E5E;
+  
+  
+  /* Corners */
+  -webkit-border-radius:6px;
+  -moz-border-radius:6px;
+  border-radius:6px;
+   -khtml-border-radius: 6px;
+   
+   /* Shadow */
+   -moz-box-shadow: 0px 1px 3px #AAA;
+   -webkit-box-shadow: 0px 1px 3px #AAA;
+   box-shadow: 0px 1px 3px #AAA;   
+}
+.like-a-button:hover {
+	background: #DDD; /* for non-css3 browsers */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#DDDDDD', endColorstr='#FFFFFF'); /* for IE */
+    background: -webkit-gradient(linear, left top, left bottom, from(#DDD), to(#FFF)); /* for webkit browsers */
+    background: -moz-linear-gradient(top,  #DDD,  #FFF); /* for firefox 3.6+ */  
+}
+.like-a-button A {
+    text-decoration:none;
+    color: #333;
+}
+.like-a-button A:link {
+    text-decoration:none;
+    color: #333;
+}
+ 
+/*---------------------------
+ * Abundatrade Trade Calculator Content
+ */
+ 
+
+div#abundatrade_content_layout {
+    font-family: "Helvetica Neue",Arial,Helvetica,"Nimbus Sans L",sans-serif;
+    margin: 0 auto;
+    width: 900px;  
+}
+
+/* Above The Data Rows */
+ div#top_content {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 80px;
+ }
+ 
+/* Please Wait Spinner */
+div#abunda_please_wait {
+    display: none;
+    
+    background-color: #F4F488;
+    border: 1px solid #444444;
+    border-radius: 10px 10px 10px 10px;
+    font-family: Verdana,Geneva,Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    z-index: 99;
+    
+    position: absolute;
+    margin: 0px auto;
+    padding-top: 10px;
+    width: 100%;
+    height: 100%;
+}
+div#abunda_please_wait_grx {
+    background: url("../images/loader.gif") repeat scroll 0 0 transparent;
+    height: 32px;
+    margin: auto;
+    width: 32px;
+}
+ 
+ 
+/* The top search form items */
+div#abundatrade_content_layout div#top_input_section {
+    background: none repeat scroll 0 0 #0077A7;
+    border: 1px solid #002252;
+    height: 35px;
+    margin: 0;
+    padding: 3px 0;
+    width: 100%;
+    position: relative;
+    display: block;
+}
+
+div#abundatrade_content_layout .input_container {
+    float: left;
+    margin: 3px 12px;
+}
+div#abundatrade_content_layout .input_container_right {
+    float: right;
+    margin: 3px 12px;
+}
+
+
+div#abundatrade_content_layout .label {
+  float: left;
+  text-align: right;
+  padding-right:3px;
+  color: #EEEEEE;
+  font-size: 18px;
+}
+
+div#abundatrade_content_layout .input {
+    float: left;
+    height:12px;
+}
+
+div#abundatrade_content_layout .submit {
+    background: none repeat scroll 0 0 #E0FFE0;
+    border: 1px solid blue;
+    font-size: 14px;
+    height: 25px;
+    margin: 0;
+    padding: 0 2px 4px;   
+}
+
+div#abundatrade_content_layout #product_qty {
+    width: 25px;
+}
+
+
+div#abundatrade_content_layout #product_code {
+    width: 125px;
+}
+
+/* Second Row Input Section */
+div#abundatrade_content_layout div#second_input_section {
+    background: none repeat scroll 0 0 #0077A7;
+    border: 1px solid #002252;
+    height: 35px;
+    margin: 6px 0px;
+    padding: 3px 0;
+    width: 100%;
+}
+div#abundatrade_content_layout .input_text {
+    color: #88FF88;
+    float: left;
+    font-size: 18px;
+    font-weight: normal;
+    height: 28px;
+}
+
+/* Calculator Body */
+div#abundatrade_content_layout table {
+    background: #F8F8F8;
+    margin: 0px;
+}
+
+/* Calculator Header/Footer */
+div#abundatrade_content_layout tfoot th,
+div#abundatrade_content_layout thead th
+{
+    background: none repeat scroll 0 0 #1F711C;
+    color: #EEEEEE;
+    font-size: 14px;
+    font-weight: bold;
+    height: 12px;
+    line-height: 1.4em;
+    min-width: 1%;
+}
+
+div#abundatrade_content_layout thead 
+{
+    border: 1px solid black;
+    line-height: 2em;
+    margin-bottom: 3px;
+    width: 100%;
+}
+
+div#abundatrade_content_layout tfoot 
+{
+    border: 1px solid black;
+    line-height: 2em;
+    margin-top: 3px;
+    width: 100%;
+}
+
+
+/* Submit Box */
+div#jqi {
+    background-color: #F4F4F4;
+    border: 1px solid #444444;
+    border-radius: 10px 10px 10px 10px;
+    font-family: Verdana,Geneva,Arial,Helvetica,sans-serif;
+    font-size: 11px;
+    padding: 7px;
+    position: absolute;
+    text-align: left;
+    width: 400px;
+}
+div#jqi .jqibuttons {
+    background-color: #FAFAFA;
+    border: 1px solid #DDDDDD;
+    padding: 5px 0;
+    text-align: right;
+}
+div#jqi button {
+    background-color: #2F6073;
+    border: 1px solid #F4F4F4;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0 10px;
+    padding: 3px 10px;    
+}
+div#jqi button.jqidefaultbutton {
+    background-color: #BF5E26;
+}
+div#jqi .jqiclose {
+    color: #BBBBBB;
+    cursor: default;
+    font-weight: bold;
+    position: absolute;
+    right: -2px;
+    top: 4px;
+    width: 18px;
+}    
+div#jqi label {
+    float: left;
+    text-align: right;
+    width: 80px;
+    font-weight: bold;    
+}
