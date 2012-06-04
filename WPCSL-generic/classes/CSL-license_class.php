@@ -35,8 +35,7 @@ class wpCSL_license__mpabunda {
      ** Currently only checks for an existing license key (PayPal
      ** transaction ID).
      **/
-    function check_license_key($theSKU='', $isa_package=false, $usethis_license='') {
-
+    function check_license_key($theSKU='', $isa_package=false, $usethis_license='', $force = false) {
         // The SKU
         //
         if ($theSKU == '') {
@@ -53,6 +52,23 @@ class wpCSL_license__mpabunda {
 
         // Don't check to see if the license is valid if there is no supplied license key
         if ($usethis_license == '') {
+            return false;
+        }
+
+        // Save the current date and retrieve the last time we checked
+        // with the server.
+        if (!$isa_package) {
+            $last_lookup = get_option($this->prefix.'-last_lookup');
+            update_option($this->prefix.'-last_lookup', time());
+        } else {
+            $last_lookup = get_option($this->prefix.'-'.$theSKU.'-last_lookup');
+            update_option($this->prefix.'-'.$theSKU.'-last_lookup', time());
+        }
+
+        // Only check every 3 days.
+        $date_differential = (3 * 24 * 60 * 60);
+
+        if (!$force && ($last_lookup + $date_differential) > time() ) {
             return false;
         }
 
@@ -80,21 +96,20 @@ class wpCSL_license__mpabunda {
             );
 
         // Check each server until all fail or ONE passes
-        //  
-        foreach ($csl_urls as $csl_url) {            
-            $response = false;
-            $result = $this->http_handler->request( 
-                            $csl_url . $query_string, 
-                            array('timeout' => 60) 
-                            ); 
+        //
+        $response = null;
+        foreach ($csl_urls as $csl_url) {
+            $result = $this->http_handler->request(
+                            $csl_url . $query_string,
+                            array('timeout' => 10)
+                            );
             if ($this->parent->http_result_is_ok($result) ) {
                 $response = json_decode($result['body']);
             }
 
             // If response is still a bool... and false... we have a problem...
-            //
-            if (is_bool($response) && !$response) {
-                return false;
+            if (is_null($response) || !is_object($response)) {
+                continue;
             }
             
             // If we get a true response record it in the DB and exit
@@ -131,19 +146,31 @@ class wpCSL_license__mpabunda {
                 return true;
             }
         }
-                
+
+        // Handle possible server disconnect
+        if (is_null($response)) {
+            if (!$isa_package) {
+                return get_option($this->prefix.'-purchased',false);
+
+                // add on package
+            } else {
+                return get_option($this->prefix.'-'.$theSKU.'-isenabled',false);
+            }
+        }
+
         //.............
         // Not licensed
         // main product
-        if (!$isa_package) { 
-            update_option($this->prefix.'-purchased',false);
-            
-        // add on package
-        } else {
-            update_option($this->prefix.'-'.$theSKU.'-isenabled',false);            
+        if (!$final_result) {
+            if (!$isa_package) {
+                update_option($this->prefix.'-purchased',false);
+
+                // add on package
+            } else {
+                update_option($this->prefix.'-'.$theSKU.'-isenabled',false);
+            }
         }
-        
-        
+
         return false;
     }
 
@@ -281,11 +308,18 @@ class wpCSL_license_package__mpabunda {
     }
     
     function isenabled_after_forcing_recheck() {
+        // Now attempt to license ourselves, make sure we license as
+        // siblings (second param) in order to properly set all of the
+        // required settings.
         if (!$this->isenabled) {
-            $this->parent->check_license_key($this->sku, true, get_option($this->lk_option_name));
+            $this->parent->check_license_key($this->sku, false, get_option($this->lk_option_name));
             $this->isenabled = get_option($this->enabled_option_name);
             $this->active_version =  get_option($this->prefix.'-'.$this->sku.'-latest-version-numeric');             
         }
+
+        // Attempt to register the parent
+        $this->parent->check_license_key($this->sku, true);
+
         return $this->isenabled;
     }
 }

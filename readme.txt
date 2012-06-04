@@ -5,7 +5,7 @@ Donate Link: http://www.cybersprocket.com/products/moneypress-abundatrade-editio
 Tags: plugin,post,page,abundatrade,affiliate,books,cds,dvds,used,cash
 Requires at least: 3.3
 Tested up to: 3.3.2
-Stable tag: 0.3
+Stable tag: 0.4
 
 Earn extra income for your site via the Abundatrade affiliate program.  The shortcode puts the calculator on your website that shows visitors how much cash they will get for their used CDs, DVDs, and books.
 
@@ -103,6 +103,10 @@ Learn more at [our job listing page](http://www.cybersprocket.com/about/our_team
 
 
 == Changelog ==
+
+= v0.4 (June 4th 2012) =
+
+* Performance Improvements
 
 = v0.3 (April 26th 2012) =
 

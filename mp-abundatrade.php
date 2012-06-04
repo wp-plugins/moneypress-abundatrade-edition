@@ -3,7 +3,7 @@
   Plugin Name: MoneyPress : Abundatrade Edition
   Plugin URI: http://www.cybersprocket.com/products/moneypress-abundatrade-edition/
   Description: Earn extra income for your site via the Abundatrade affiliate program.  The shortcode puts the calculator on your website that shows visitors how much cash they will get for their used CDs, DVDs, and books.
-  Version: 0.3
+  Version: 0.4
   Author: Cyber Sprocket Labs
   Author URI: http://www.cybersprocket.com
   License: GPL3
