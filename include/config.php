@@ -29,6 +29,10 @@ if (defined('MP_ABUNDA_PLUGINDIR')) {
             'plugin_path'            => MP_ABUNDA_PLUGINDIR,
             'basefile'               => MP_ABUNDA_BASENAME,
             
+            //setup upgrade system
+            'on_update' => array(mpAbunda_Actions, activate_plugin),
+            'version' => '0.4',
+            
             // We don't want default wpCSL objects, let's set our own
             //
             'use_obj_defaults'       => false,

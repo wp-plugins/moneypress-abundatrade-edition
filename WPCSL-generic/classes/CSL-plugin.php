@@ -8,7 +8,7 @@
 * share a code libary and reduce code redundancy.
 * 
 ************************************************************************/
-define('WPCSL__mpabunda__VERSION', '1.8');
+define('WPCSL__mpabunda__VERSION', '1.9.1');
 
 // (LC) 
 // These helper files should only be loaded if needed by the plugin
@@ -87,16 +87,49 @@ class wpCSL_plugin__mpabunda {
         $this->sku              = '';
         $this->uses_money       = true;
         $this->has_packages     = false;
+        $this->display_settings = true;
         $this->display_settings_collapsed = true;
         $this->show_locale      = true;
         $this->broadcast_url    = 'http://www.cybersprocket.com/signage/index.php';
         $this->shortcode_was_rendered = false;
-
+        $this->current_admin_page = '';
+        $this->prefix           = '';
+        
+        // Set current admin page
+        //
+        if ( isset($_GET['page']) ) {
+            $plugin_page = stripslashes($_GET['page']);
+            $plugin_page = plugin_basename($plugin_page);
+            $this->current_admin_page = $plugin_page;
+        }
+                
         // Do the setting override or initial settings.
         //
         foreach ($params as $name => $value) {
             $this->$name = $value;
         }
+
+        // Check to see if we are doing an update
+        //
+        if (isset($this->on_update)) {
+            if ($this->version != get_option($this->prefix."-installed_base_version")) {
+                call_user_func_array($this->on_update, array($this, get_option($this->prefix."-installed_base_version")));
+                update_option($this->prefix.'-installed_base_version', $this->version);
+            }
+        }
+
+        // Our Admin Page : true if we are on the admin page for this plugin
+        // or we are processing the update action sent from this page
+        //        
+        $this->isOurAdminPage = ($this->current_admin_page == $this->prefix.'-options');
+        if (!$this->isOurAdminPage) {
+            $this->isOurAdminPage = 
+                 isset($_REQUEST['action']) && 
+                 ($_REQUEST['action'] === 'update') &&
+                 isset($_REQUEST['option_page']) && 
+                 (substr($_REQUEST['option_page'], 0, strlen($this->prefix)) === $this->prefix)
+                 ;
+        }        
         
         // Debugging Flag
         $this->debugging = (get_option($this->prefix.'-debugging') == 'on');
@@ -530,7 +563,7 @@ class wpCSL_plugin__mpabunda {
             add_action('admin_init', array($this, 'admin_init'),50);
             add_action('admin_notices', array($this->notifications, 'display'));          
         } else {
-            if (!$this->themes_enabled) {
+            if (!$this->themes_enabled && !$this->no_default_css) {
                 // non-admin enqueues, actions, and filters
                 add_action('wp_head', array($this, 'checks'));
                 add_filter('wp_print_scripts', array($this, 'user_header_js'));
@@ -605,7 +638,7 @@ class wpCSL_plugin__mpabunda {
      **
      **/
     function admin_init() {
-        $this->add_display_settings();
+        if ($this->display_settings) { $this->add_display_settings(); }
         $this->settings->register();
         $this->checks();
     }
